@@ -22,7 +22,7 @@ tfe.factory("sounds", function(data){
 			}
 			else if(songs[sound])fadeOut(sound);
 		}
-		if(data.sound){
+		if(sound){
 			delay = delay || 0;
 			setTimeout(function(){
 				if(stop!=true){
