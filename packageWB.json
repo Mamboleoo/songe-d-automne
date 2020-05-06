@@ -1,0 +1,16 @@
+{
+  "name": "Songe d'automne",
+  "version": "1.0",
+  "main": "index.html",
+  "nodejs": true,
+  "node-main" : "server.js",
+  "window": {
+    "title": "Songe d'automne",
+    "icon": "img/ui/menuButton1.png",
+    "toolbar": true,
+    "position": "center",
+    "show_in_taskbar": true,
+    "fullscreen":false,
+    "frame":false
+  }
+}

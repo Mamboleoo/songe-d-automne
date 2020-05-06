@@ -1,0 +1,921 @@
+@import 'reset';
+@import 'fonts';
+@import 'animations';
+
+body, html{
+	width: 100%;
+	height: 100%;
+	overflow:hidden;
+}
+body{
+	position: relative;
+	background: black url(../../img/ui/bgWood.jpg) no-repeat center center;
+	background-size: cover;
+	font-family: sans-serif;
+	transform: scale(1);
+	*{
+		perspective: 900px;
+	}
+	input:focus, button:focus{outline:none;}
+}
+.game{
+	z-index:5;
+	transform-origin: top center;
+	position: absolute;
+	width: 1280px;
+	height: 900px;
+	background: url(../../img/ui/bgBook.png) no-repeat center center;
+	background-size: cover;
+	section{position: absolute;z-index:10;}
+}
+.backToHome{
+	width: 50px;
+	height: 50px;
+	background: url(../../img/ui/homeButton.png);
+	position: absolute;
+	left: 55px;
+	top: 29px;
+	border-radius: 50%;
+	line-height: 48px;
+	z-index: 9999;
+	cursor: pointer;
+	text-indent: -9999px;	
+	text-align: center;
+}
+// -----------------------
+/* STEP 0*/
+// -----------------------
+.welcome{
+	z-index:10;
+	width: 60%;
+	left: 20%;
+	top: 10%;
+	font-size: 2.5rem;
+	font-family: Lora;
+	padding: 30px;
+	box-sizing: border-box;
+	text-align: center;
+	font-style: italic;
+	h1{
+		font-size: 3rem;
+		font-weight: bold;
+	}
+	p{
+		margin: 45px 0;
+	}
+	button{
+		padding: 0;
+		margin: 0;
+		align-items: center;
+		height: 80px;
+		border: none;
+		background:none;
+		font-size: 3rem;
+		font-family: Lora;
+		font-weight: bold;
+		cursor: pointer;
+		transition:.1s ease-out;
+		float: left;
+		&.reset{float:right;color: rgb(20, 20, 20);}
+		&.commencer{float:none;color:black;}
+		&:hover{box-shadow: 0px -3px 0 black inset;}
+	}
+}
+// -----------------------
+/* STEP 1*/
+// -----------------------
+.boardingPass{
+	z-index:20;
+	text-align: center;
+	top: 80px;
+	left: 220px;
+	// perspective: 900px;
+	transform: rotateX(5deg);
+}
+	.ticket{
+		display: inline-block;
+		position: relative;
+		width: 840px;
+		height: 665px;
+		text-align: center;
+		margin-top: 20px;
+		.leftPart{
+			cursor: pointer;
+			z-index: 10;
+			position: absolute;
+			right: 0;
+			height: 100%;
+			width: 50%;
+			background: url(../../img/ui/boardingPass.jpg) left center no-repeat;
+			transform-origin: 0 50%;
+			transition: 1.5s linear;
+			box-shadow: rgba(65, 65, 65, 0.5) 5px 5px 10px;
+			&.turn{
+				position: absolute;
+				transform: rotateY(-165deg);
+				div{
+					transform: rotateY(0deg);
+				}
+			}
+			&.turn + .rightPart{
+				transform: rotateY(-5deg);
+			}
+			div{
+				cursor: pointer;
+				transform: rotateY(-180deg);
+				width: 100%;
+				height: 100%;
+				position: absolute;
+				background: url(../../img/ui/backTicket.jpg);
+				transition: 0s .75s;
+				backface-visibility: hidden;
+				z-index: -1;
+			}
+		}
+		.rightPart{
+			position: absolute;
+			right: 0;
+			height: 100%;
+			width: 50%;
+			background: url(../../img/ui/boardingPass.jpg) right center no-repeat;
+			text-align: left;
+			transition: 1.5s linear;
+			transform-origin: 0 50%;
+			box-shadow: rgba(65, 65, 65, 0.5) 5px 5px 10px;
+			*{
+				position: absolute;
+				font-family: myunderwood;
+			}
+		
+			input[type=radio]{display:none;}
+			input[type=radio]:checked + label{
+				background: url(../../img/ui/boardCross.png) no-repeat center center;
+			}
+			label{
+				width: 16px;
+				height: 16px;
+				padding: 10px;
+				cursor: pointer;
+			}
+			.ticketSex1{top: 206px;left: 294px;}
+			.ticketSex2{top: 204px;left: 339px;}
+			.ticketClass1{top: 379px;left: 179px;}
+			.ticketClass2{top: 378px;left: 260px;}
+			.ticketClass3{top: 376px;left: 335px;}
+			input[type=text]{
+				background: none;
+				border: none;
+				font-size: 1.2rem;
+				&:focus{
+					outline: 1px solid black;
+				}
+			}
+			.ticketName{
+				top: 236px;
+				left: 75px;
+				height: 21px;
+				width: 293px;
+			}
+			.ticketCity{
+				top: 279px;
+				left: 250px;
+				width: 112px;
+			}
+			.ticketGo{
+				background: none;
+				border: none;
+				top: 544px;
+				left: 231px;
+				font-size: 1.5rem;
+				cursor: pointer;
+				padding: 15px 0;
+				hr{
+					opacity: 0;
+					width: 0%;
+					border: 1px solid black;
+					height: 0px;
+					margin: 0;
+					transition: .8s ease-in;
+				}
+				&:hover hr{
+					opacity: 1;
+					width: 100%;
+					transition: .4s ease-out;
+				}
+				&.loading{
+					width: 133px;
+					height: 138px;
+					background: url(../../img/ui/loading.png);
+					top: 455px;
+					text-indent: -9999px;
+					animation: 6s loadingWheel linear infinite;
+					hr{display:none;}
+				}
+			}
+			.ticketPicture{
+				top: 435px;
+				left: 97px;
+				width: 124px;
+				height: 168px;
+				cursor: pointer;
+				overflow: hidden;
+				filter: sepia(.7);
+				&.male{background:url(../../img/ui/male.jpg);}
+				&.female{background:url(../../img/ui/female.jpg);}
+				&.noBg{background:none;}
+				#webcam{height:100%;left:-40%;}
+				// canvas.lensGif{background: url(../../img/ui/snapLens.gif);}
+				input{
+					cursor: pointer;
+					width: 124px;
+					height: 168px;
+					display: block;
+					z-index: -1;
+					text-indent: -9999px;
+					background: url(../../img/ui/uploadPix.png);
+					&.frontNoBg{
+						background: none;
+						z-index: 10;
+					}
+				}
+			}
+		}
+	}
+// -----------------------
+/* STEP 2*/
+// -----------------------
+.home{
+	width:960px;
+	height: 840px;
+	left: 154px;
+	top: 28px;
+	background:url(../../img/ui/homeScreen.png);
+	div{
+		position: absolute;
+		text-indent: -9999px;
+		width: 250px;
+		height: 250px;
+		cursor: pointer;
+		z-index: 10;
+		&:nth-child(1){
+			top: 16px;
+			left: 25px;
+		}
+		&:nth-child(2){
+			left: 705px;
+			.wheelOne{
+				width: 44px;
+				height: 71px;
+				background: url(../../img/ui/wheel1.png);
+				top: 103px;
+				left: 81px;
+				transition: 7s;
+				transform-origin : 23px 39px linear;
+			}
+			&:hover .wheelOne{transform: rotate(180deg);}
+		}
+		&:nth-child(3){
+			top: 580px;
+			.eyeBlink{
+				position: absolute;
+				left: 138px;
+				top: 68px;
+				width:28px;
+				height:25px;
+				background-image: url(../../img/ui/eyeBlink.png);
+				animation: 0;
+			}
+			&:hover .eyeBlink{animation: eyeBlink 1 .5s steps(7);}
+		}
+		&:nth-child(4){top: 580px;left:700px;}
+	}
+	.cloud{width: 309px;height: 227px;transform-origin: center center;opacity: 0;z-index:0;cursor: auto !important;}
+	.cloud.one{
+		animation: 10s cloud infinite linear;transform-origin: center center;
+		background: url(../../img/ui/clouds/cloud1.png);
+		top: 100px;
+		left: 300px;
+	}
+	.cloud.two{
+		background: url(../../img/ui/clouds/cloud1.png);
+		animation: 12s 4s cloud infinite linear;
+		top: 100px;
+		left: 220px;
+	}
+	.cloud.three{
+		background: url(../../img/ui/clouds/cloud1.png);
+		animation: 8s 6s cloud infinite linear;
+		top: 100px;
+		left: 180px;
+	}
+}
+// -----------------------
+/* STEP 3*/
+// -----------------------
+.gameSelect{
+	width:100%;
+	height:100%;
+	.runAwayInfos{
+		opacity: 0;
+	}
+	.charlyInfos, .runAwayInfos{
+		width: 612px;
+		height: 807px;
+		background: url(../../img/ui/rules.png);
+		position: absolute;
+		left: 0;
+		top: 49px;
+		font-size: 2rem;
+		font-family: Lora;
+		text-align: center;
+		opacity: 0;
+		transition: .5s;
+		transform: translateY(20px);
+		h2{
+			font-size: 3rem;
+			font-weight: bold;
+			font-style: italic;
+			text-align: center;
+			margin-top: 110px;
+		}
+		p{
+			&:first-child{margin-top: 150px;}
+			width: 69%;
+			left: 14%;
+			position: relative;
+			margin-top: 20px;
+			text-indent: 30px;
+		}
+	}
+	.gameChoice{
+		cursor: pointer;
+		width: 612px;
+		height: 44%;
+		top: 43px;
+		left: 4%;
+		position: absolute;
+		padding-bottom: 20px;
+		z-index: 100;
+		transition:.5s;*{transition:.5s;}
+		&.fuite{
+			left: 51%;
+			.imgGame{
+				background-position:right center;
+				width: 270px;
+				left: 121px;
+			}
+		}
+		.imgGame{
+			transition: .5s;
+			width: 300px;
+			background: url(../../img/ui/gameIcon.png) left center no-repeat;
+			height: 302px;
+			position: absolute;
+			left: 106px;
+			transform: translateY(140px);
+			div{
+				background-position: right center;
+				width: 270px;
+				left: 121px;
+			}
+		}
+		h1{
+			font-size: 3rem;
+			font-family: camille, serif;
+			position: absolute;
+			transform: translateY(470px);
+			width: 100%;
+			text-align: center;
+		}
+		&:hover{
+			top: 43px;
+			.imgGame{height:0;}
+			h1{transform: translateY(20px);}
+			.charlyInfos{opacity: 1;transform: translateY(0);}
+			.runAwayInfos{opacity: 1;transform: translateY(0);}
+		}
+	}
+}
+.charly{
+	width: 100%;
+	height: 100%;
+	.gameView{
+		width: 934px;
+		height: 668px;
+		position: absolute;
+		top: 100px;
+		left: 280px;
+		.include{position: absolute;left:0;top:0;width:100%;height:100%;}
+		.charlyCongrats{
+			position: absolute;
+			z-index: 100;
+			width: 72%;
+			left: 10%;
+			padding: 2%;
+			background: rgba(25,25,25,0.87);
+			color: white;
+			font-family: Lora;
+			font-size: 1.4rem;
+			line-height: 2.7em;
+			text-align: center;
+			font-style: italic;
+			top: 19%;
+		}
+		svg{
+			.stop rect{cursor: not-allowed;}
+			rect{
+				fill:rgba(0,0,0,0);
+				cursor: crosshair;
+				// cursor: none;
+				// &:hover{stroke:black;}
+			}
+		}
+		.charlyView{position: absolute;}
+		.ranking{
+			width: 100%;
+			height: 100%;
+			text-align: center;
+			font-family: Lora;
+			h2{
+				font-size: 5rem;
+				font-weight: bold;
+				margin-bottom: 40px;
+			}
+			li:first-child .name{font-weight:bold;margin-bottom:5px;}
+			li{
+				font-size: 2rem;
+				.rank{
+					width: 40px;
+					display: inline-block;
+				}
+				.name{
+					width: 380px;
+					display: inline-block;
+					text-align: left;
+				}
+				.score{
+					width: 50px;
+					display: inline-block;
+					text-align: right;
+					font-weight: bold;
+				}
+			}
+			.next{
+				position: absolute;
+				width: 100%;
+				bottom: 10%;
+				font-size: 2rem;
+			}
+		}
+	}
+	aside{
+		width: 243px;
+		height: 793px;
+		position: absolute;
+		background: url(../../img/charly/aside.png);
+		top: 80px;
+		left: 43px;
+		.findPiece{
+			width: 63px;
+			height: 63px;
+			position: absolute;
+			top: 77px;
+			left: 92px;
+			img{width: 100%;}
+		}
+		.players{
+			position: absolute;
+			top: 381px;
+			left: 14px;
+			li{
+				font-family: Lora;
+				font-style: italic;
+				font-size: 26px;
+				height: 35px;
+				line-height: 35px;
+				margin-bottom: 5px;
+				width:210px;
+				.score{width: 40px;display:inline-block;}
+				.scorePlus{
+					position: absolute;
+					left: 0px;
+					top: 0;
+					font-weight: bold;
+					font-size: 2rem;
+					animation: 1s scorePlus 1 forwards ease-out;
+					color: white;
+				}
+			}
+		}
+		.timer{
+			.arrow{
+				width: 36px;
+				height: 130px;
+				background: url(../../img/charly/arrow.png);
+				display: block;
+				position: absolute;
+				top: 197px;
+				left: 51px;
+				transform: rotate(55deg);
+				transform-origin: 17px 73px;
+				transition: .5s linear;
+				&.start{transition: 10s linear;transform:rotate(120deg);}
+			}
+		}
+	}
+	.chat{
+		width: 862px;
+		height: 123px;
+		position: absolute;
+		left: 341px;
+		bottom: 18px;
+		background: url(../../img/charly/chat.png);
+		.messages{
+			width: 822px;
+			height: 75px;
+			left: 16px;
+			position: absolute;
+			top: 8px;
+			overflow-y: scroll;
+			&::-webkit-scrollbar{width: 6px;}
+			&::-moz-scrollbar{width: 6px;}
+			&::scrollbar{width: 6px;}
+			&::-webkit-scrollbar-thumb{background: black;}
+			&::-moz-scrollbar-thumb{background: black;}
+			&::scrollbar-thumb{background: black;}
+			p{margin: 2px 0;font-size: 1.05rem;}
+			span{display:inline-block}
+			span:first-child{width: 129px;}
+			span:nth-child(2){width: 45px;margin: 0 5px 0 10px;}
+			span:nth-child(3){width: 605px;vertical-align: top;}
+		}
+		form{
+			input{
+				width: 214px;
+				position: absolute;
+				top: 85px;
+				left: 25px;
+				background: none;
+				border: none;
+				&::-webkit-input-placeholder {color: black;opacity: 0.5;}
+				&::-moz-input-placeholder {color: black;opacity: 0.5;}
+				&::input-placeholder {color: black;opacity: 0.5;}
+			}
+			button{
+				width: 40px;
+				position: absolute;
+				top: 78px;
+				left: 248px;
+				text-indent: 997px;
+				background: none;
+				border: none;
+				cursor: pointer;
+				padding: 10px 0;
+				&:focus{outline: none;}
+			}
+		}
+	}
+}
+// -----------------------
+/* STEP 3.2*/
+// -----------------------
+.runAway{
+	width: 100%;
+	height:100%;
+	.runAwayInfos{
+		width: 80%;
+		height: 90%;
+		left: 10%;
+		position: absolute;
+		top: 5%;
+		font-size: 3rem;
+		font-family: Lora;
+		text-align: center;
+		h2{
+			font-size: 4rem;
+			font-weight: bold;
+		}
+		button{
+			width: 200px;
+			height: 100px;
+			font-size: 2rem;
+			background: white;
+			border: none;
+			margin-top: 30px;
+			cursor: pointer;
+			&:hover{background:black;color: white;}
+		}
+	}
+	.gameView{
+		width: 100%;
+		height: 100%;
+		background: url(../../img/runAway/grid.png) no-repeat;
+		position: absolute;
+		.overlay{
+			font-size: 2rem;
+			line-height: 2.6rem;
+			width: 80%;
+			left: 10%;
+			top: 38%;
+			position: absolute;
+			text-align: center;
+			font-family: Lora;
+			font-style: italic;
+		}
+	}
+	.timer{
+		width: 90%;
+		height: 80%;
+		left: 5%;
+		top: 10%;
+		opacity: .3;
+		position: absolute;
+		background-size: cover;
+		background-repeat: no-repeat;
+		background-image: url(../../img/runAway/sea.png);
+		filter: brightness(.8);
+		.titanicShape{
+			width: 764px;
+			height: 210px;
+			position: absolute;
+			left: 17%;
+			top: 6%;
+			overflow: hidden;
+			padding-top: 90px;
+			mask-image: gradient(linear, left top, left bottom, color-stop(95%, rgba(0,0,0,1)), color-stop(100%, rgba(0,0,0,0)));
+			-webkit-mask-image: -webkit-gradient(linear, left top, left bottom, color-stop(95%, rgba(0,0,0,1)), color-stop(100%, rgba(0,0,0,0)));
+			-ms-mask-image: -ms-gradient(linear, left top, left bottom, color-stop(95%, rgba(0,0,0,1)), color-stop(100%, rgba(0,0,0,0)));
+			-o-mask-image: -o-gradient(linear, left top, left bottom, color-stop(95%, rgba(0,0,0,1)), color-stop(100%, rgba(0,0,0,0)));
+			-moz-mask-image: -moz-gradient(linear, left top, left bottom, color-stop(95%, rgba(0,0,0,1)), color-stop(100%, rgba(0,0,0,0)));
+			mask-image: -moz-gradient(linear, left top, left bottom, color-stop(95%, rgba(0,0,0,1)), color-stop(100%, rgba(0,0,0,0)));
+			img{
+				animation : titanicSink 25s infinite cubic-bezier(.92,.03,.51,.51);
+				animation-play-state : paused;
+				&.start{animation-play-state:running;}
+			}
+		}
+	}
+	.lifeBoats{
+		width: 1020px;
+		height: 42px;
+		position: absolute;
+		top: 65px;
+		left: 75px;
+		text-align: center;
+		overflow: hidden;
+		div{
+			width: 100px;
+			height: 42px;
+			background: url(../../img/runAway/lifeBoat.png) bottom center no-repeat;
+			display:inline-block;
+			position: relative;
+			transform:translateX(-600px);
+		}
+	}
+	.raceTrack{
+		height: 766px;
+		width: 1000px;
+		left: 83px;
+		top: 109px;
+		position: absolute;
+		text-align: center;	
+		.player{
+			height: 100%;
+			width: 100px;
+			display: inline-block;
+			.track{
+				height: 657px;
+				width: 100%;
+				position: relative;
+				span{
+					width: 50px;
+					height: 50px;
+					display: block;
+					position: absolute;
+					bottom:0;
+					left: 28.5px;
+					background: url(../../img/runAway/pawns.png);
+				}
+			}
+			.infos{
+				height: 106px;
+				width: 100%;
+				text-align: center;
+				margin-top: 10px;
+				img{width:57px;filter: sepia(.7);}
+				span{display: block;}
+			}
+		}
+	}
+	.counter span{
+		font-size: 15rem;
+		width: 100%;
+		display: block;
+		position: absolute;
+		text-align: center;
+		top: 310px;
+	}
+	.endScreen{
+		position: absolute;
+		width: 1081px;
+		height: 747px;
+		top: 75px;
+		left: 110px;
+		background:url(../../img/runAway/survived.png) no-repeat;
+		background-size: contain;
+		&.death{background-image:url(../../img/runAway/death.jpg);}
+	}
+}
+// -----------------------
+/* STEP 4*/
+// -----------------------
+.settings{
+	width: 100%;
+	height: 100%;
+	.pictures{
+		width: 1101px;
+		height: 793px;
+		position: absolute;
+		background: url(../../img/ui/boxes.png);
+		top: 65px;
+		left: 91px;
+		li{
+			width: 100px;
+			height: 135px;
+			display: inline-block;
+			position: absolute;
+			filter: sepia(.7);
+			border-radius: 15px;
+			overflow: hidden;
+			cursor: pointer;
+			img{width:100%;height:100%;}
+			&:nth-child(1){top: 110px;left: 102px;}
+			&:nth-child(2){left: 256px;top: 110px;}
+			&:nth-child(3){left: 416px;top: 110px;}
+			&:nth-child(4){left: 574px;top: 110px;}
+			&:nth-child(5){left: 740px;top: 110px;}
+			&:nth-child(6){left: 895px;top: 110px;}
+
+			&:nth-child(7){left: 106px;top: 320px;}
+			&:nth-child(8){left: 261px;top: 320px;}
+			&:nth-child(9){left: 421px;top: 320px;}
+			&:nth-child(10){left: 578px;top: 320px;}
+			&:nth-child(11){left: 740px;top: 320px;}
+			&:nth-child(12){left: 896px;top: 320px;}
+
+			&:nth-child(13){left: 105px;top: 532px;}
+			&:nth-child(14){left: 260px;top: 532px;}
+			&:nth-child(15){left: 422px;top: 532px;}
+			&:nth-child(16){left: 577px;top: 532px;}
+			&:nth-child(17){left: 732px;top: 532px;}
+			&:nth-child(18){left: 902px;top: 532px;}
+
+			span{
+				position: absolute;
+				top: 86px;
+				background: rgba(30,30,30,.8);
+				padding: 5px 0;
+				width: 100%;
+				text-align: center;
+				color: white;
+				font-size: 1.2rem;
+				font-family: Lora;
+				opacity: 0;
+				transition: .3s linear;
+				transform: rotateX(90deg) translateY(-80px);
+			}
+			&:hover{
+				span{
+					opacity: 1;
+					transform: rotateX(0) translateY(0);
+				}
+			}
+		}
+	}	
+}
+// -----------------------
+/* STEP 5*/
+// -----------------------
+.profile{
+	width: 100%;
+	height: 100%;
+	.ticket{
+		display: block;
+		margin: 80px auto;
+		.leftPart{
+			cursor: auto;
+			left: 0;
+			transform: rotateX(5deg) rotateY(5deg);
+			transform-origin: right center;
+			background:none;
+			&:before{
+				pointer-events:none;
+				content: "";
+				top: 0;
+				left: 0;
+				bottom: 0;
+				right: 0;
+				position: absolute;
+				z-index: -1;
+				background: url(../../img/ui/backTicket.jpg);
+				transform: rotateY(180deg);
+				transform-origin: center center;
+			}
+			h1{
+				font-size: 2rem;
+				font-family: Camille;
+				margin: 45px 0 15px 0;
+			}
+			p{
+				&:first-child{margin-top:15%}
+				width: 70%;
+				font-size: 1.5rem;
+				font-family: Lora;
+				font-style: italic;
+				text-align: left;
+				margin-left: 15%;
+				margin-bottom: 10px;
+				span{
+					float: right;
+					&.sound{
+						cursor: pointer;
+						margin: 0 0 0 10px;
+						&.stroke{opacity: .5;text-decoration:line-through;}
+					}
+				}
+			}
+
+		}
+		.rightPart{
+			z-index: 10;
+			transform: rotateX(5deg) rotateY(-5deg);
+			transform-origin: left center;
+			.ticketPicture{img{pointer-events: none;}}
+		}
+	}
+	
+}
+
+.why{
+	width: 80%;
+	height: 80%;
+	left: 10%;
+	font-family: Lora;
+	top: 10%;
+	overflow-y: scroll;
+	&::-webkit-scrollbar{width: 10px;}
+	&::-moz-scrollbar{width: 10px;}
+	&::scrollbar{width: 10px;}
+	&::-webkit-scrollbar-thumb{background: black;}
+	&::-moz-scrollbar-thumb{background: black;}
+	&::scrollbar-thumb{background: black;}
+	&::-webkit-scrollbar-track-piece{background: rgba(0,0,0,.2)}
+	&::-moz-scrollbar-track-piece{background: rgba(0,0,0,.2)}
+	&::scrollbar-track-piece{background: rgba(0,0,0,.2)}
+	transition: .2s box-shadow linear;
+	&.scrollBottom{
+		box-shadow: inset 0 -10px 10px -10px rgba(0,0,0,.6);
+	}
+	&.scrollTop{
+		box-shadow: inset 0 10px 10px -10px rgba(0,0,0,.6);
+	}
+	&.scrollMiddle{
+		box-shadow: inset 0 10px 10px -10px rgba(0,0,0,.6) , inset 0 -10px 10px -10px rgba(0,0,0,.6);
+	}
+	p{
+		font-size: 1.4rem;
+		line-height: 1.8rem;
+		b{
+			text-decoration: line-through;
+			opacity: .6;
+		}
+		span{
+			font-weight: bold;
+			display: block;
+			margin: 30px 0 15px 0;
+			font-size: 2rem;
+			font-style: italic;
+		}
+		a{
+			color: inherit;
+			text-decoration: underline;
+		}
+		&.thanks{
+			i{
+				font-weight: bold;
+			}
+		}
+	}
+}
+.wheelLoading{
+	width: 133px;
+	height: 138px;
+	background: url(../../img/ui/loading.png);
+	top: 455px;
+	text-indent: -9999px;
+	animation: 6s loadingWheel linear infinite;
+	position: absolute;
+	bottom: -117px;
+	top: auto;
+	left: 334px;
+}

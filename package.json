@@ -1,0 +1,9 @@
+{
+  "name": "Songe_d_automne",
+  "version": "0.0.1",
+  "dependencies": {
+    "express": "4.3",
+    "socket.io": "0.9",
+    "mongojs": "0.16.0"
+  }
+}
