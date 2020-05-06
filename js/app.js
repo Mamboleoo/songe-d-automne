@@ -1,7 +1,7 @@
 var tfe = angular.module("tfe",["ngAnimate"]);
 
 tfe.factory("socket", function(){
-	var socket = io.connect("http://localhost:5000/");
+	var socket = io.connect("https://songe-d-automne.herokuapp.com/");
 	return socket;
 
 });
