@@ -27,7 +27,7 @@ tfe.factory("runAway", function(data, socket, sounds){
 			document.body.addEventListener("keyup", function(e){
 				if(e.keyCode==32 && $scope.gameState == 1){
 					$scope.playersOnline[data.player.name].where--;
-					sounds("step");
+					sounds("step" + Math.floor(Math.random() * 4));
 					if($scope.playersOnline[data.player.name].where == 0){
 						$scope.$apply();
 						youWin($scope);
