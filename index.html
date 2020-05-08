@@ -71,7 +71,7 @@
 							<canvas ng-model="tests" id="canvasCam" width="124" height="168"  ng-click="snapLens = true;savePicture();" ng-show="data.showPicture" ng-class="{lensGif : snapLens}"></canvas>
 							<input type="file" ng-model="picture" onchange="angular.element(this).scope().uploadPix()" id="sendFile" accept="image/jpeg" ng-show="data.noWebcam" ng-class="{frontNoBg : data.hasAPicture && data.noWebcam}" />
 						</div>
-						<button type="submit" class="ticketGo" ng-class="{loading : data.ticketLoading==true}">Get on board<hr /></button>
+						<button type="submit" class="ticketGo" ng-class="{loading : data.ticketLoading==true}">Start<hr /></button>
 					</form>	
 				</div>
 			</div>
