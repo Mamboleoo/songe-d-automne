@@ -30,17 +30,17 @@
 		<!-- WELCOME MESSAGE -->
 		<switchHome ng-switch on="data.player.name">
 			<section class="welcome" ng-switch-when="null" ng-show="data.step == 0">
-				<h1>Bienvenue à bord</h1>
-				<p>Vous vous apprêtez à entrer dans une expérience interactive à bord du Titanic. Vous serez mis rapidement en contact avec d'autres passagers.</p>
-				<p>Mais tout d'abord j'aurais besoin de quelques informations vous concernant.</p>
-				<button class="commencer" ng-click="data.step = 1">Commencer</button>
+				<h1>Welcome on board!</h1>
+				<p>You're about to enter an interactive experience on board of the Titanic.</p>
+				<p>But first, I'll need a few info about you.</p>
+				<button class="commencer" ng-click="data.step = 1">Start</button>
 			</section>
 			<section class="welcome" ng-switch-default ng-show="data.step == 0">
-				<h1>Re-bienvenue à bord {{data.player.name}} !</h1>
-				<p>Cela fait plaisir de te revoir parmi nous sur le Titanic.</p>
-				<p>Tu peux continuer à jouer en cliquant sur "Continuer".</p>
-				<p>Si tu n'es plus {{data.player.name}}, tu peux réinitialiser ton compte en cliquant sur "Reset".</p>
-				<button ng-click="getOldplayer()">Continuer</button>
+				<h1>Welcome again {{data.player.name}}!</h1>
+				<p>What a pleasure to see you again on board of the Titanic.</p>
+				<p>You can keep playing by clicking on "Continue".</p>
+				<p>If you are not {{data.player.name}}, you can reset your account by clicking on "Reset".</p>
+				<button ng-click="getOldplayer()">Continue</button>
 				<button ng-click="data.step = 1" class="reset">Reset</button>
 				<div class="ticketGo" ng-class="{wheelLoading : data.ticketLoading==true}"></div>
 			</section>
@@ -71,21 +71,21 @@
 							<canvas ng-model="tests" id="canvasCam" width="124" height="168"  ng-click="snapLens = true;savePicture();" ng-show="data.showPicture" ng-class="{lensGif : snapLens}"></canvas>
 							<input type="file" ng-model="picture" onchange="angular.element(this).scope().uploadPix()" id="sendFile" accept="image/jpeg" ng-show="data.noWebcam" ng-class="{frontNoBg : data.hasAPicture && data.noWebcam}" />
 						</div>
-						<button type="submit" class="ticketGo" ng-class="{loading : data.ticketLoading==true}">Embarquer<hr /></button>
+						<button type="submit" class="ticketGo" ng-class="{loading : data.ticketLoading==true}">Get on board<hr /></button>
 					</form>	
 				</div>
 			</div>
 		</section>
 		<!-- HOME SCREEN -->
 		<section class="home gameScreen" ng-show="data.step == 2">
-			<div ng-click="data.step = 3;">Jeu</div>
-			<div ng-click="data.step = 4">Réglages
+			<div ng-click="data.step = 3;">Game</div>
+			<div ng-click="data.step = 4">Settings
 				<div class="wheelOne" ng-show="data.step == 2"></div>
 			</div>
-			<div ng-click="data.step = 5">Profil
+			<div ng-click="data.step = 5">Profile
 				<div class="eyeBlink" ng-show="data.step == 2"></div>
 			</div>
-			<div ng-click="data.step = 6">Pourquoi</div>
+			<div ng-click="data.step = 6">Why</div>
 			<div class="cloud one" ng-show="data.step == 2"></div>
 			<div class="cloud two" ng-show="data.step == 2"></div>
 			<div class="cloud three" ng-show="data.step == 2"></div>
@@ -105,15 +105,15 @@
 		<section class="profile gameScreen" ng-show="data.step == 5" ng-controller="profile">
 			<div class="ticket">
 				<div class="leftPart">
-					<p>Joueurs en ligne <span>{{data.players | onlinePlayers}}</span></p>
-					<p>Votre ping <span>{{data.player.ping}}</span></p>
-					<p>Activer le son<span class="sound" ng-class="{stroke:!data.sound}" ng-click="data.sound = true; sounds('homeMusic', 0)">Oui</span><span class="sound"  ng-class="{stroke:data.sound}" ng-click="data.sound = false; sounds('homeMusic', 0, true)">Non</span></p>
+					<p>Players online <span>{{data.players | onlinePlayers}}</span></p>
+					<p>Your ping <span>{{data.player.ping}}</span></p>
+					<p>Activate sound<span class="sound" ng-class="{stroke:!data.sound}" ng-click="data.sound = true; sounds('homeMusic', 0)">Yes</span><span class="sound"  ng-class="{stroke:data.sound}" ng-click="data.sound = false; sounds('homeMusic', 0, true)">No</span></p>
 					<h1>Explorations</h1>
-					<p>Détails retrouvés <span>{{data.player.scores.charly.pieces || 0}}</span></p>
-					<h1>Fuite</h1>
-					<p>Survies <span>{{data.player.scores.runAway.lifes || 0}}</span></p>
-					<p>Morts <span>{{data.player.scores.runAway.death || 0}}</span></p>
-					<p>Marches escaladées <span>{{data.player.scores.runAway.steps || 0}}</span></p>
+					<p>Details found <span>{{data.player.scores.charly.pieces || 0}}</span></p>
+					<h1>Escape</h1>
+					<p>Survivals <span>{{data.player.scores.runAway.lifes || 0}}</span></p>
+					<p>Deaths <span>{{data.player.scores.runAway.death || 0}}</span></p>
+					<p>Steps climbed <span>{{data.player.scores.runAway.steps || 0}}</span></p>
 				</div>
 				<div class="rightPart">
 					<form action="" ng-submit="saveNewInfosfct(data.players[data.player.name])">
@@ -135,7 +135,7 @@
 							<canvas ng-model="tests" id="canvasCamP" width="124" height="168" ng-click="clickCanvas()" ng-show="data.showPicture" ng-class="{lensGif : snapLens}"></canvas>
 							<input type="file" ng-model="picture" onchange="angular.element(this).scope().uploadPix('P');angular.element(this).scope().infosHaveChanged=true;angular.element(this).scope().pictureChanged=true;" id="sendFileP" accept="image/jpeg" ng-show="data.noWebcam" ng-class="{frontNoBg : data.hasAPicture && data.noWebcam}" />
 						</div>
-						<button type="submit" class="ticketGo" ng-show="infosHaveChanged">Valider<hr /></button>
+						<button type="submit" class="ticketGo" ng-show="infosHaveChanged">Save<hr /></button>
 					</form>	
 				</div>
 			</div>
@@ -147,28 +147,28 @@
 				<h1>Explorations</h1>
 				<div class="charlyInfos">
 					<p>
-						Votre but est de retrouver dans l’image centrale un détail de celle-ci en moins de dix secondes.
+						Your goal is to find in the big picture the detail shown on the left in less than 10 seconds.
 					</p>
 					<p>
-						Le premier joueur qui le repère reçoit 3 points, le second 2 points et les autres joueurs 1 point.
+						The first player to find it gets 3 points, the second 2 points and the rest gets 1 point.
 					</p>
 					<p>
-						Une manche se termine après une suite de 10 extraits.
+						A new round starts every 10 details found.
 					</p>
 				</div>
 			</div>
 			<div class="gameChoice fuite" ng-click="data.step = 3.2;runAway.joinGame()">
 				<div class="imgGame"></div>
-				<h1>Fuite</h1>
+				<h1>Escape</h1>
 				<div class="runAwayInfos">
 					<p>
-						Le bateau est en train de couler et il ne vous reste plus beaucoup de temps pour rejoindre un canot de sauvetage.
+						The boat is sinking and there is not much time to find a lifeboat.
 					</p>
 					<p>
-						Atteignez le pont supérieur avant que le Titanic ne soit complètement submergé.
+						Reach the upper deck before the Titanic sinks.
 					</p>
 					<p>
-						Appuyez sur la touche "espace" pour gravir les escaliers.
+						Press the "space bar" to climb the steps.
 					</p>
 				</div>
 			</div>
@@ -203,8 +203,8 @@
 					<span class="zoomInCounter" ng-show="counter==0">Go !</span>
 				</div>
 				<div class="overlay" ng-show="overlayTrue">
-					Merci de patienter durant la fin de la manche précédente.<br />
-					<span ng-show="data.sound">Profitez de cet extrait musical.</span>
+					Please wait for the previous round to end (< 30 sec)<br>
+					<span ng-show="data.sound">Enjoy this music while waiting.</span>
 				</div>
 			</div>
 			<div class="endScreen" ng-show="gameState == 2" ng-class="{death : !playerWon[data.player.name]}"></div>
@@ -214,14 +214,14 @@
 			<div class="gameView">
   				<div class="include" ng-include class="charlyView" src="'img/views/grid.svg'" ng-if="data.game == 1" onload="svgLoaded()" ng-show="!rankOn"></div>
   				<div class="ranking" ng-show="rankOn">
-  					<h2>Manche terminée</h2>
+  					<h2>Round over</h2>
   					<ul>
   						<li ng-repeat="player in itemsToArray(data.players) | orderBy:'score':true">
 							<span class="name"><span class="rank">{{$index+1}}.</span>{{player.name | pseudoLength}}</span>
 							<span class="score">{{player.score}}</span>
 						</li>
   					</ul>
-  					<p class="next">Prochaine manche dans 10 secondes</p>
+  					<p class="next">Next round in 10 seconds</p>
   				</div>
 			</div>
 			<aside>
@@ -251,36 +251,36 @@
 				</div>
 				<form ng-submit="sendMsg()">
 					<input type="text" placeholder="Votre message" ng-model="chat.newMessage.msg" />
-					<button type="subimt">Envoyer</button>
+					<button type="subimt">Send</button>
 				</form>
 			</div>
 		</section>
 		<!-- POURQUOI -->
 		<section pourquoi class="why gameScreen scrollBottom" ng-show="data.step == 6">
 			<p>
-				<span>Pourquoi ce projet est-il né ?</span>
-				Ce projet est le fruit <b>de trois mois</b> d'un mois de travail dans le cadre de mon travail de fin d'études au sein de l'<a href="http://infographie-sup.be/">ESIAJ</a>.
+				<span>Why this project?</span>
+				This project is the result of <b>three months</b> one month of work for my end of study at <a href="http://infographie-sup.be/">ESIAJ, Belgium</a>.
 			</p>
 			<p>
-				<span>Pourquoi seulement un mois ?</span>
-				Mon TFE était, à l'origine, un jeu en Point & Click, également à bord du Titanic, mais après deux mois de réalisations, j'ai décidé pour diverses raisons de réorienté mon projet.
-				Si vous le souhaitez, vous pouvez retrouver mon premier travail ici : <a href="http://songe-d-automne-beta.herokuapp.com/">http://songe-d-automne-beta.herokuapp.com/</a>
+				<span>Why only one month?</span>
+				My project was, originally, a point & click game also on board of the Titanic. But after two months of work I decided for various reasons to rethink my project.
+				You can check the beta version of my first work here : <a href="http://songe-d-automne-beta.herokuapp.com/">http://songe-d-automne-beta.herokuapp.com/</a>
 			</p>
 			<p>
-				<span>Pourquoi le Titanic ?</span>
-				Mon histoire avec ce paquebot commence assez jeune. En dernière année de primaire j'ai dû réaliser un exposé ayant pour thème le Titanic. Mais mes parents me considéraient trop jeune à l'époque pour voir le film ce qui a, je crois, crée un attrait pour cette histoire qu'on voulait me cacher.
+				<span>Why the Titanic ?</span>
+				My story with this liner started when I was quite young. During my last year of primary school I had to make a lecture about the Titanic. But my parents decided I was too young to watch the movie. That's how my curiosity for this story grew.
 			</p>
 			<p>
-				<span>Pourquoi les dessins sont-ils si beaux ?</span>
-				Ces splendides oeuvres d'arts sont le travail de <a href="http://lapetitechose.be/">Camille Van Hoof</a> qui a bien voulu participer à mon projet et qui a quelque peu souffert avec mes idées pas toujours très claires.
-				Je vous invite à visite <a href="http://mamboleoo.be/tfe/draws">cette page</a> si vous avez envie de voir l'ensemble des dessins qu'elle a réalisé pour mon projet.
+				<span>What all the drawings are so beautiful ?</span>
+				Those splendids masterpieces were made by my friend <a href="http://lapetitechose.be/">Camille Van Hoof</a> who accepted to work on this project even though I was not always easy to understand.
 			</p>
 			<p>
-				<span>Pourquoi un jeu ?</span>
-				Parce que les jeux c'est le bien. On apprend, on s'amuse, on découvre. Parce qu'au travers d'un jeu j'ai pu perfectionner mon javascript. J'ai également pu expérimenter avec <a href="https://angularjs.org/">AngularJs</a> afin de voir les capacités de ce framework. Grâce au côté multijoueur du projet, j'ai eu l'occasion de gérer mon propre serveur <a href="http://nodejs.org/">NodeJs</a> ainsi qu'à travailler avec le plugin <a href="http://socket.io/">Socket.io</a> pour gérer les joueurs entre eux.
+				<span>Why a game ?</span>
+				Because games are good. We learn, we have fun, we discover. Because with a game I was able to improve my JavaScript skills. I also learned about <a href="https://angularjs.org/">AngularJs</a> and see what was possible to do with it.<br>
+				I also learned about multiplayer in real time using a NodeJs server connected with <a href="http://socket.io/">Socket.io</a> to handle players.
 			</p>
 			<p class="thanks">
-				<span>Merci qui ?</span>
+				<span>Thanks to who ?</span>
 				Julien, <i>Nours</i>, Capucine, <i>Camille</i>, Alphonse, <i>François</i>, Henriette, <i>Céline</i>, Martin, <i>Léa</i>, Rebecca, <i>Marie-Noëlle</i>, Romain, <i>Michel</i>, Remy, <i>Alexandre</i>, Sophie, <i>Anne</i>, Nicolas, <i>Pauline</i>, Antoine, <i>Caroline</i>, Romuald, <i>Pierre</i>, Jérémy, <i>Laurent</i>.
 			</p>
 		</section>
